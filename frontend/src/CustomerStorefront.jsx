@@ -2,8 +2,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { API } from './App';
-import TrackOrder from './TrackOrder';
-import MyOrders from './MyOrders';
+import TrackOrder from './TrackOrder.jsx';
+import MyOrders from './MyOrders.jsx';
 
 axios.defaults.withCredentials = true;
 
