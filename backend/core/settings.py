@@ -1,5 +1,5 @@
 # backend/core/settings.py
-
+import os
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -7,9 +7,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-change-this-in-production-abc123xyz'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-this-in-production-abc123xyz')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'whitenoise',
     'shops',
     'inventory',
     'chatbot',
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoisePy3Middleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -92,3 +94,11 @@ SESSION_COOKIE_AGE      = 60 * 60 * 24 * 30
 SESSION_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SECURE   = False
 SESSION_COOKIE_HTTPONLY = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
