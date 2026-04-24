@@ -1,0 +1,27 @@
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+    """
+    Adds 'upi_ref' field to Order model — stores the UTR/transaction ID
+    that the customer provides when paying by UPI.
+    
+    Paste in chatbot/migrations/ — name it next after your eta_note migration.
+    e.g. 0007_add_upi_ref.py
+    """
+
+    dependencies = [
+        # Change to your previous migration
+        ('chatbot', '0006_add_eta_note'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='order',
+            name='upi_ref',
+            field=models.CharField(
+                max_length=100, blank=True, default='',
+                help_text='UPI Transaction ID / UTR provided by customer'
+            ),
+        ),
+    ]

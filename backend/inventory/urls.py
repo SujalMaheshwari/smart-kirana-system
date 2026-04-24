@@ -1,0 +1,12 @@
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('products/', views.products_list, name='products-list'),
+    path('products/create/', views.product_create, name='product-create'),
+    path('products/barcode/<str:barcode>/', views.barcode_lookup, name='barcode-lookup'),
+    path('products/<int:pk>/', views.product_detail, name='product-detail'),
+    path('products/<int:pk>/update/', views.product_update, name='product-update'),
+    path('products/<int:pk>/delete/', views.product_delete, name='product-delete'),
+    path('products/<int:pk>/stock/', views.product_update_stock, name='product-stock'),
+    path('browse/', views.browse, name='browse'),
+]
