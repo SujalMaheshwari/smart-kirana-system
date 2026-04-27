@@ -85,20 +85,20 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173',
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://smart-kirana-system.vercel.app',    
+    'https://smart-kirana-system.vercel.app',
 ]
 CORS_ALLOW_CREDENTIALS = True
 
-# Sessions — simple Lax works fine because Vite proxy makes
-# React + Django appear on the same origin
-SESSION_COOKIE_AGE      = 60 * 60 * 24 * 30
-SESSION_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SECURE   = False
-SESSION_COOKIE_HTTPONLY = True
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
+CSRF_TRUSTED_ORIGINS = [
+    'https://smart-kirana-system.vercel.app',
+    'https://kirana-backend-cs79.onrender.com',
 ]
+
+# Sessions
+SESSION_COOKIE_AGE      = 60 * 60 * 24 * 30
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE   = True
+SESSION_COOKIE_HTTPONLY = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
