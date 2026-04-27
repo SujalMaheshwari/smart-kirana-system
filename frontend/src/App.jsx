@@ -5,7 +5,7 @@ import LandingPage from './LandingPage';
 import OwnerDashboard from './OwnerDashboard';
 import CustomerStorefront from './CustomerStorefront';
 
-export const API = '';  // Vite proxies /api/* → Django. Same origin = cookies work.
+export const API = import.meta.env.VITE_API_URL || '';
 axios.defaults.withCredentials = true;
 
 function getRoute() {
